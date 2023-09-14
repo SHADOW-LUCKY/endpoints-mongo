@@ -1,15 +1,17 @@
 import {Router} from 'express'
-import {lessthan, multiply, delifzero, maxprice, panplus, findclassic,betweennum,nicebread} from '../controllers/ingrdientes.controllers.js'
+import * as route from '../controllers/ingrdientes.controllers.js'
 
 const router = Router()
 
-router.get('/lessthan', lessthan)
-router.get('/multiply', multiply)
-router.delete('/delifzero',delifzero)
-router.get('/maxprice', maxprice)
-router.patch('/panplus', panplus)
-router.get('/findclassic', findclassic)
-router.get('/betweennum', betweennum)
-router.patch('/nicebread', nicebread)
+router.get('/lessthan', route.lessthan)
+router.get('/multiply', route.multiply)
+router.delete('/delifzero',route.delifzero)
+router.get('/maxprice', route.maxprice)
+router.patch('/panplus', route.panplus)
+router.get('/findclassic', route.findclassic)
+router.get('/betweennum', route.betweennum)
+router.patch('/nicebread', route.nicebread)
+router.get('/listABC', route.listABC)
+router.get('/listall', route.listall)
 
-export default router
+export default router 

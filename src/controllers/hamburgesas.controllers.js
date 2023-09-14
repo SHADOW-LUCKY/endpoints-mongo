@@ -120,3 +120,72 @@ export const findtomatoandonion = async (req , res) => {
         console.log(error);
     }
 }
+/*25. Incrementar en $2 el precio de todas las hamburguesas de la categoría “Gourmet”  */
+
+export const gourmetbytwo = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.updateMany({categoria: 'Gourmet'}, {$inc: {precio: 2}})
+        result.acknowledged === true ? (
+            res.status(200).json({message: 'Updated gourmet'})
+        ): (
+            res.status(400).json({message: 'Error'})
+        )
+    }catch (error){
+        console.log(error);
+    }
+}
+/* 27. Encontrar la hamburguesa más cara */
+export const maxprice = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.find({}).sort({precio: -1}).limit(1).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+/* 28. Agregar “Pepinillos” a todas las hamburguesas de la categoría “Clásica” */
+
+export const pepinillos = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.updateMany({categoria: 'Clásica'}, {$push: {ingredientes: 'Pepinillos'}})
+        result.acknowledged === true ? (
+            res.status(200).json({message: 'Added pepinillos'})
+        ): (
+            res.status(400).json({message: 'Error'})
+        )
+    }catch (error){
+        console.log(error);
+    }
+}
+
+/* 30. Encontrar todas las hamburguesas que contienen exactamente 7 ingredientes */
+
+export const sevening = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.find({ingredientes: {$size: 7}}).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/* 31. Encontrar la hamburguesa más cara que fue preparada por un chef especializado en “Gourmet” */
+
+export const gourmetchef = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.find({categoria: 'Gourmet'}).sort({precio: -1}).limit(1).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}

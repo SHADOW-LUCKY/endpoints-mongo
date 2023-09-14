@@ -109,3 +109,27 @@ export const nicebread = async (req , res) => {
         console.log(error);
     }
 }
+/* 26. Listar todos los ingredientes en orden alfabético */
+export const listABC = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('ingredientes')
+        const result = await collection.find({}).sort({nombre: 1}).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
+
+/* 32. Listar todos los ingredientes junto con el número de hamburguesas que los contienen */
+export const listall = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('ingredientes')
+        const result = await collection.aggregate([{$unwind: '$ingredientes'},{$group:{_id: '$ingrdientes', count: {$sum: 1}}}]).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}

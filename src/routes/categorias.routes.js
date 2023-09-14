@@ -1,9 +1,9 @@
 import {Router} from 'express'
-import {findall,contgourmet} from '../controllers/categorias.controllers.js'
+import * as route from '../controllers/categorias.controllers.js'
 
 const router = Router()
 
-router.get('/findall', findall)
-router.get('/contgourmet', contgourmet)
+router.get('/findall', route.findall)
+router.get('/contgourmet', route.contgourmet)
 
 export default router

@@ -67,3 +67,28 @@ export const addasian = async (req , res) => {
     }
 }
 
+export const exceptchefA = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('chefs')
+        const result = await collection.find({nombre: {$ne: 'ChefA'}}).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+/* 29. Eliminar todos los chefs que tienen una especialidad en “Cocina Vegetariana” */
+export const quitvegan = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('chefs')
+        const result = await collection.deleteMany({especialidad: 'Cocina Vegetariana'})
+        result.acknowledged === true ? (
+            res.status(200).json({message: 'Deleted all vegan chefs'})
+        ): (
+            res.status(400).json({message: 'Error'})
+        )
+    } catch (error) {
+        console.log(error);
+    }
+}

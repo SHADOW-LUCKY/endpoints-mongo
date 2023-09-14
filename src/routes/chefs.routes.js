@@ -1,11 +1,13 @@
 import {Router} from 'express'
-import {meatchef, international,countchef,addasian} from '../controllers/chefs.controllers.js'
+import * as route from '../controllers/chefs.controllers.js'
 
 const router = Router()
 
-router.get('/meatchef', meatchef)
-router.patch('/international', international)
-router.get('/countchef', countchef)
-router.post('/addasian', addasian)
+router.get('/meatchef', route.meatchef)
+router.patch('/international', route.international)
+router.get('/countchef', route.countchef)
+router.post('/addasian', route.addasian)
+router.get('/exceptchefA', route.exceptchefA)
+router.delete('/quitvegan', route.quitvegan)
 
 export default router
