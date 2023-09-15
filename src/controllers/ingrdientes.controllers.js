@@ -1,5 +1,5 @@
 import Dbconnnection from '../config/database.js'
-
+//1. Encontrar todos los ingredientes con stock menor a 400
 export const lessthan = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -10,7 +10,7 @@ export const lessthan = async (req , res) => {
         console.log(error);
     }
 }
-
+//4. Aumentar en 1.5 el precio de todos los ingredientes
 export const multiply = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -26,7 +26,7 @@ export const multiply = async (req , res) => {
         console.log(error);
     }
 }
-
+//7. Eliminar todos los ingredientes que tengan un stock de 0 
 export const delifzero = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -42,7 +42,7 @@ export const delifzero = async (req , res) => {
     }
     
 }
-
+//11. Encontrar el ingrediente más caro 
 export const maxprice = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -53,7 +53,7 @@ export const maxprice = async (req , res) => {
         console.log(error);
     }
 }
-
+//13. Incrementar el stock de “Pan” en 100 unidades
 export const panplus = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -68,7 +68,7 @@ export const panplus = async (req , res) => {
         console.log(error);
     }
 }
-
+//14. Encontrar todos los ingredientes que tienen una descripción que contiene la palabra “clásico”
 export const findclassic = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -79,7 +79,7 @@ export const findclassic = async (req , res) => {
         console.log(error);
     }
 }
-
+//21. Encontrar todos los ingredientes cuyo precio sea entre $2 y $5
 export const betweennum = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -94,7 +94,7 @@ export const betweennum = async (req , res) => {
         console.log(error);
     }
 }
-
+//22. Actualizar la descripción del “Pan” a “Pan fresco y crujiente”
 export const nicebread = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -126,8 +126,27 @@ export const listABC = async (req , res) => {
 export const listall = async (req , res) => {
     try {
         const db = await Dbconnnection()
-        const collection = db.collection('ingredientes')
-        const result = await collection.aggregate([{$unwind: '$ingredientes'},{$group:{_id: '$ingrdientes', count: {$sum: 1}}}]).toArray()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.aggregate([
+            { $unwind: "$ingredientes" },
+            { $group: { _id: "$ingredientes", count: { $sum: 1 } } },
+          ]).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//36. Encontrar todos los ingredientes que no están en ninguna hamburguesa
+export const notinany = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const hamburgesas = db.collection('hamburgesas')
+        const ingrdientes = db.collection('ingredientes')
+
+        const ninHamburgesas = await hamburgesas.distinct('ingredientes')
+        const result = await ingrdientes.find({nombre:{$nin: ninHamburgesas}}).toArray()
+        
         res.status(200).json(result)
     } catch (error) {
         console.log(error);

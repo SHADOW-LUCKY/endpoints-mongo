@@ -5,5 +5,6 @@ const router = Router()
 
 router.get('/findall', route.findall)
 router.get('/contgourmet', route.contgourmet)
+router.get('/maxcat', route.maxcat)
 
 export default router

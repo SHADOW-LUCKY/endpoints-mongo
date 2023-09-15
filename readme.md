@@ -31,12 +31,12 @@
 29. Eliminar todos los chefs que tienen una especialidad en “Cocina Vegetariana”✅
 30. Encontrar todas las hamburguesas que contienen exactamente 7 ingredientes✅
 31. Encontrar la hamburguesa más cara que fue preparada por un chef especializado en “Gourmet”✅
-32. Listar todos los ingredientes junto con el número de hamburguesas que los contienen
-33. Listar los chefs junto con el número de hamburguesas que han preparado
-34. Encuentra la categoría con la mayor cantidad de hamburguesas
-35. Listar todos los chefs y el costo total de ingredientes de todas las hamburguesas que han preparado
-36. Encontrar todos los ingredientes que no están en ninguna hamburguesa
-37. Listar todas las hamburguesas con su descripción de categoría
-38. Encuentra el chef que ha preparado hamburguesas con el mayor número de ingredientes en total
-39. Encontrar el precio promedio de las hamburguesas en cada categoría
-40. Listar los chefs y la hamburguesa más cara que han preparado
+32. Listar todos los ingredientes junto con el número de hamburguesas que los contienen✅
+33. Listar los chefs junto con el número de hamburguesas que han preparado✅
+34. Encuentra la categoría con la mayor cantidad de hamburguesas✅
+35. Listar todos los chefs y el costo total de ingredientes de todas las hamburguesas que han preparado✅
+36. Encontrar todos los ingredientes que no están en ninguna hamburguesa✅
+37. Listar todas las hamburguesas con su descripción de categoría✅
+38. Encuentra el chef que ha preparado hamburguesas con el mayor número de ingredientes en total✅
+39. Encontrar el precio promedio de las hamburguesas en cada categoría✅
+40. Listar los chefs y la hamburguesa más cara que han preparado✅

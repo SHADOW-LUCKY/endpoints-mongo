@@ -1,5 +1,5 @@
 import Dbconnnection from '../config/database.js'
-
+//2. Encontrar todas las hamburguesas de la categoría “Vegetariana”
 export const allvegan = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -10,7 +10,7 @@ export const allvegan = async (req , res) => {
         console.log(error);
     }
 }
-
+//5. Encontrar todas las hamburguesas preparadas por “ChefB” 
 export const allchefb = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -21,7 +21,7 @@ export const allchefb = async (req , res) => {
         console.log(error);
     }
 }
-
+//8. Agregar un nuevo ingrediente a la hamburguesa “Clásica”
 export const addclassic = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -40,7 +40,7 @@ export const addclassic = async (req , res) => {
         console.log(error);
     }
 }
-
+//9. Encontrar todas las hamburguesas que contienen “Pan integral” como ingrediente
 export const findintegral = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -51,7 +51,7 @@ export const findintegral = async (req , res) => {
         console.log(error);
     }
 }
-
+//12. Encontrar las hamburguesas que no contienen “Queso cheddar” como ingrediente
 export const notchesse = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -62,7 +62,7 @@ export const notchesse = async (req , res) => {
         console.log(error);
     }
 }
-
+//15. Listar las hamburguesas cuyo precio es menor o igual a $9
 export const lessnine = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -73,7 +73,7 @@ export const lessnine = async (req , res) => {
         console.log(error);
     }
 }
-
+//18. Eliminar las hamburguesas que contienen menos de 5 ingredientes
 export const lessfive = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -94,7 +94,7 @@ export const lessfive = async (req , res) => {
         console.log(error);
     }
 }
-
+//20. Listar las hamburguesas en orden ascendente según su precio
 export const ascentham = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -109,7 +109,7 @@ export const ascentham = async (req , res) => {
     }
 
 }
-
+//23. Encontrar todas las hamburguesas que contienen “Tomate” o “Lechuga” como ingredientes
 export const findtomatoandonion = async (req , res) => {
     try {
         const db = await Dbconnnection()
@@ -184,6 +184,36 @@ export const gourmetchef = async (req , res) => {
         const db = await Dbconnnection()
         const collection = db.collection('hamburgesas')
         const result = await collection.find({categoria: 'Gourmet'}).sort({precio: -1}).limit(1).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//37. Listar todas las hamburguesas con su descripción de categoría
+
+export const hamncat = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.aggregate([{$lookup : {
+            from : 'categorias',
+            localField : 'categoria',
+            foreignField : 'nombre',
+            as : 'categoriaDesc'
+        }}]).toArray()
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//39. Encontrar el precio promedio de las hamburguesas en cada categoría
+export const avgprice = async (req , res) => {
+    try {
+        const db = await Dbconnnection()
+        const collection = db.collection('hamburgesas')
+        const result = await collection.aggregate([{$group: {_id: "$categoria", avg: {$avg: "$precio"}}}]).toArray()
         res.status(200).json(result)
     } catch (error) {
         console.log(error);

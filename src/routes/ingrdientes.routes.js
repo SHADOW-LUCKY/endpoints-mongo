@@ -13,5 +13,6 @@ router.get('/betweennum', route.betweennum)
 router.patch('/nicebread', route.nicebread)
 router.get('/listABC', route.listABC)
 router.get('/listall', route.listall)
+router.get('/notinany', route.notinany)
 
 export default router 

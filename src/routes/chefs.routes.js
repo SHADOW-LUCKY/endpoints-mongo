@@ -9,5 +9,10 @@ router.get('/countchef', route.countchef)
 router.post('/addasian', route.addasian)
 router.get('/exceptchefA', route.exceptchefA)
 router.delete('/quitvegan', route.quitvegan)
+router.get('/listchef', route.listchef)
+router.get('/totalcost', route.totalcost)
+router.get('/maxingredient', route.maxingredient)
+router.get('/maxpricechef', route.maxpricechef)
+
 
 export default router

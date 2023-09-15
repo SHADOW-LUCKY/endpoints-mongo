@@ -103,3 +103,24 @@ db.Chefs.insertMany([
 ]);
 
 db.ingredientes.find({$text:{descripcion},{$search:"clásico"}})
+
+db.hamburgesas.aggregate([
+  {
+    $group: {
+      _id: "$categoria",
+      totalHamburguesas: { $sum: 1 },
+    },
+  },
+  {
+    $sort: { totalHamburguesas: -1 },
+  },
+  {
+    $limit: 1,
+  },
+]);
+
+
+db.ingrdientes.aggregate([
+  {$set: {notInHamb: {$size: "$hamburguesas"}}},
+  {$match: {notInHamb: 0}}
+])

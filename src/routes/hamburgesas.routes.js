@@ -16,6 +16,8 @@ router.get('/gourmetbytwo', route.gourmetbytwo)
 router.post('/pepinillos', route.pepinillos)
 router.get('/sevening', route.sevening)
 router.get('/gourmetchef', route.gourmetchef)
+router.get('/hamncat', route.hamncat)
+router.get('/avgprice', route.avgprice)
 
 
 export default router
